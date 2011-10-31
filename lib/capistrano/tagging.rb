@@ -12,12 +12,11 @@ Capistrano::Configuration.instance.load do
   namespace :tagging do
 
     def tag(options = {})
-      tag_format = (tag_format || ':rails_env_:release').gsub(/:([a-z_]+[^_:])/i) do |match|
+      tag_format = exists?(:tag_format) && fetch(:tag_format)
+      return (tag_format || ':rails_env_:release').gsub(/:([a-z_]+[^_:])/i) do |match|
         method = $1.to_sym
-        match  = options[method] || send(method) || ''
+        match  = options[method] || (exists?(method) && fetch(method)) || (respond_to?(method) && send(method)) || ''
       end
-
-      tag_format
     end
 
     desc "Place release tag into Git and push it to server."
