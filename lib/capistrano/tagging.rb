@@ -12,7 +12,7 @@ Capistrano::Configuration.instance.load do
   namespace :tagging do
 
     def tag(options = {})
-      tag_format = (tag_format || ':rails_env_:release').gsub(/(:[a-z_]+)[^:]/i) do |match|
+      tag_format = (tag_format || ':rails_env_:release').gsub(/:([a-z_]+[^_:])/i) do |match|
         method = $1.to_sym
         match  = options[method] || send(method) || ''
       end
