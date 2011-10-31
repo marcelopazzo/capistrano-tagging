@@ -9,7 +9,7 @@ Capistrano::Configuration.instance.load do
   after  "deploy:restart", "tagging:deploy"
   before "deploy:cleanup", "tagging:cleanup"
 
-  namespace :tags do
+  namespace :tagging do
 
     def tag(options = {})
       tag_format = (tag_format || ':rails_env_:release').gsub(/(:[a-z_]+)[^:]/i) do |match|
