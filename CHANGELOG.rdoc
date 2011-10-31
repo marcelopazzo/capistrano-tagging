@@ -1,3 +1,7 @@
+== 0.0.3 (October 31, 2011)
+
+* Added stage to tag name
+
 == 0.0.1 (May 6, 2010)
 
 * Inital Check-in
