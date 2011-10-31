@@ -6,8 +6,8 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.version     = Capistrano::Tagging::VERSION
 
-  s.authors     = ["Leon Berenschot"]
-  s.email       = ["LeonB@beriedata.nl"]
+  s.authors     = ["Dimko", "Leon Berenschot"]
+  s.email       = ["deemox@gmail.com", "LeonB@beriedata.nl"]
 
   s.summary     = "Tag your deployed commit to git"
   s.description = <<-EOF
