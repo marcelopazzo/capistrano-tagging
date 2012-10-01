@@ -1,26 +1,25 @@
 # encoding: utf-8
-require File.expand_path("../lib/capistrano/tagging/version", __FILE__)
+require File.expand_path('../lib/capistrano/tagging/version', __FILE__)
 
 Gem::Specification.new do |s|
-  s.name        = "capistrano-tagging"
+  s.name        = 'capistrano-tagging'
   s.platform    = Gem::Platform::RUBY
-  s.version     = Capistrano::Tagging::VERSION
+  s.version     = Capistrano::Tagging::VERSION.dup
 
-  s.authors     = ["Dimko", "Leon Berenschot"]
-  s.email       = ["deemox@gmail.com", "LeonB@beriedata.nl"]
+  s.authors     = ['Dimko', 'Leon Berenschot']
+  s.email       = ['deemox@gmail.com', 'LeonB@beriedata.nl']
 
   s.summary     = "Tag your deployed commit to git"
   s.description = <<-EOF
-    With every commit tag the local and remote branch with a tag
+    Create a tag in the local and remote repo on every deploy
   EOF
 
-  s.date        = "2011-01-31"
-  s.homepage    = "http://github.com/dimko/capistrano-tagging"
+  s.homepage    = 'http://github.com/dimko/capistrano-tagging'
 
-  s.add_dependency "capistrano", ">= 1.0.0"
+  s.add_dependency 'capistrano', '~> 2.0'
 
   s.files       = `git ls-files`.split("\n")
   s.has_rdoc    = false
 
-  s.require_path = 'lib'
+  s.require_paths = ['lib']
 end

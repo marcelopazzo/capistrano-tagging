@@ -6,16 +6,24 @@ Automagically tag your current deployed release with capistrano
 Install
 ----
 
-    gem install capistrano-tagging
+```bash
+$ gem install capistrano-tagging
+```
 
 Usage
 ----
 
-in deploy.rb:
+In `deploy.rb`:
 
-    require 'capistrano/tagging'
+```ruby
+require 'capistrano/tagging'
+```
 
-    set :tag_format, ':rails_env_:release' # by default, also available all of deploy variables
+That's it! You can specify format of tag:
+
+```ruby
+set :tagging_format, ':rails_env_:release' # default, also available all of deploy variables
+```
 
 Original idea:
 ---
