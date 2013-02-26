@@ -6,7 +6,7 @@ Capistrano::Configuration.instance(:must_exist).load do
 
   namespace :tagging do
     _cset(:tagging_format, ':rails_env_:release')
-    _cset(:tagging_remote, ':rails_env_:release')
+    _cset(:tagging_remote, 'origin')
 
     def fetch_or_send(method)
       fetch method, respond_to?(method) ? send(method) : nil
