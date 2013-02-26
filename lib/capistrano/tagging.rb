@@ -7,6 +7,7 @@ Capistrano::Configuration.instance(:must_exist).load do
   namespace :tagging do
     _cset(:tagging_format, ':rails_env_:release')
     _cset(:tagging_remote, 'origin')
+    #_cset(:tagging_environments, %w(production))
 
     def fetch_or_send(method)
       fetch method, respond_to?(method) ? send(method) : nil
@@ -23,6 +24,11 @@ Capistrano::Configuration.instance(:must_exist).load do
       fetch(:tagging_remote)
     end
 
+    def tagging_environment?
+      return true if self[:tagging_environments].nil?
+      self[:tagging_environments].include?(self[:rails_env])
+    end
+
     def user_name
       `git config --get user.name`.chomp
     end
@@ -32,13 +38,21 @@ Capistrano::Configuration.instance(:must_exist).load do
     end
 
     def create_tag(name)
-      puts `git tag #{name} #{revision} -m "Deployed by #{user_name} <#{user_email}>"`
-      puts `git push #{remote} refs/tags/#{name}:refs/tags/#{name}`
+      if tagging_environment?
+        puts `git tag #{name} #{revision} -m "Deployed by #{user_name} <#{user_email}>"`
+        puts `git push #{remote} refs/tags/#{name}:refs/tags/#{name}`
+      else
+        puts "ignored git tagging in #{rails_env} environment"
+      end
     end
 
     def remove_tag(name)
-      puts `git tag -d #{name}`
-      puts `git push #{remote} :refs/tags/#{name}`
+      if tagging_environment?
+        puts `git tag -d #{name}`
+        puts `git push #{remote} :refs/tags/#{name}`
+      else
+        puts "ignored git tagging in #{rails_env} environment"
+      end
     end
 
     desc "Create release tag in local and origin repo"
