@@ -6,19 +6,19 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.version     = Capistrano::Tagging::VERSION.dup
 
-  s.authors     = ['Dimko', 'Leon Berenschot']
-  s.email       = ['deemox@gmail.com', 'LeonB@beriedata.nl']
+  s.authors     = ['Dimko', 'Leon Berenschot', 'Marcelo Almeida']
+  s.email       = ['deemox@gmail.com', 'LeonB@beriedata.nl', 'contact@marcelopazzo.com']
 
   s.summary     = "Tag your deployed commit to git"
   s.description = <<-EOF
     Create a tag in the local and remote repo on every deploy
   EOF
 
-  s.homepage    = 'http://github.com/dimko/capistrano-tagging'
+  s.homepage    = 'https://github.com/marcelopazzo/capistrano-tagging'
 
-  s.add_dependency 'capistrano', '~> 2.0'
+  s.add_dependency 'capistrano', '~> 3.0'
 
-  s.files       = `git ls-files`.split("\n")
+  s.files       = Dir['lib/**/*.rb']
   s.has_rdoc    = false
 
   s.require_paths = ['lib']
