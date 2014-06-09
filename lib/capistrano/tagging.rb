@@ -1,10 +1,11 @@
 require 'capistrano'
 
 Capistrano::Configuration.instance(:must_exist).load do
-  after  'deploy:restart', 'tagging:deploy'
-  before 'deploy:cleanup', 'tagging:cleanup'
 
   namespace :tagging do
+    after  'deploy:restart', :deploy
+    before 'deploy:cleanup', :cleanup
+
     _cset(:tagging_format, ':rails_env_:release')
     _cset(:tagging_remote, 'origin')
     #_cset(:tagging_environments, %w(production))
@@ -55,12 +56,12 @@ Capistrano::Configuration.instance(:must_exist).load do
       end
     end
 
-    desc "Create release tag in local and origin repo"
+    desc "Create release tag in local and remote repo"
     task :deploy do
       create_tag tag(:release => release_name)
     end
 
-    desc "Remove release tag from local and origin repo"
+    desc "Remove release tag from local and remote repo"
     task :cleanup do
       count = fetch(:keep_releases, 5).to_i
 
