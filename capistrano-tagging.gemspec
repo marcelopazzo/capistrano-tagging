@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
 
   s.homepage    = 'https://github.com/marcelopazzo/capistrano-tagging'
 
-  s.add_dependency 'capistrano', '~> 3.0'
+  s.add_dependency 'capistrano', '~> 3.2'
 
   s.files       = Dir['lib/**/*.rb']
   s.has_rdoc    = false
